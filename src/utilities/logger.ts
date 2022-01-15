@@ -5,7 +5,8 @@ const logger = (
   res: express.Response,
   next: () => void
 ): void => {
-  console.log(req.originalUrl);
+  console.log('originalUrl', req.originalUrl);
+  const { name, age } = req.query
   next();
 };
 
