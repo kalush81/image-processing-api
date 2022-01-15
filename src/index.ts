@@ -1,20 +1,18 @@
 import express from 'express';
 import logger from './utilities/logger';
-import testRoute from './api/testRoute';
+import homeRoute from './api/home';
 import imagesRoute from './api/images';
+
+const port = 3000
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 
-app.use('/test-route', testRoute);
+app.use('/', homeRoute)
 app.use('/api', imagesRoute);
 
-app.get('/', (req, res) => {
-  res.send('processing images home page ');
-});
-
-app.listen('3000', () => console.log('server is listening on 3000'));
+app.listen(port, () => console.log(`server is listening on ${port}`));
 
 export default app;
