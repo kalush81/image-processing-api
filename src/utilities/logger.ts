@@ -6,7 +6,6 @@ const logger = (
   next: () => void
 ): void => {
   console.log('originalUrl', req.originalUrl);
-  const { name, age } = req.query
   next();
 };
 

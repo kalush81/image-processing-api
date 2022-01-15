@@ -1,24 +1,28 @@
 import express from 'express';
 
-interface obj { 
+interface obj {
+  filename: string;
+  width: number;
+  height: number;
+}
+
+export default (
   filename: string,
   width: number,
   height: number
-}
+): Promise<obj> => {
+  //get image from images folder by filname asynchronously
+  //resize image with sharp
+  //create new folder for the given image "thumbs"
+  //create resized image file and add to "thumbs"
 
-export default (filename: string, width: number, height: number): Promise<obj> => { 
-
-  //get image from images folder by filname asyncronously
-  // resize image with sharp
-  //create new folder for the given image
-  //create resized image file 
-  return new Promise((res, rej) => { 
-    setTimeout(() => { 
+  return new Promise((res, rej) => {
+    setTimeout(() => {
       res({
-        filename, 
+        filename,
         width,
         height
-      })
-    }, 3000)
-  }) 
-}
+      });
+    }, 3000);
+  });
+};
