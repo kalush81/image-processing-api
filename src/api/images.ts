@@ -1,15 +1,15 @@
-import express from 'express';
+import express, { Request, Response} from 'express';
 import processImage from '../utilities/processImage';
 
 const imagesRoute = express.Router();
 
 imagesRoute.route('/images')
-  .get((req, res) => {
+  .get( async (req: Request, res: Response) => {
     const { filename, width, height } = req.query
-    const image = processImage(filename, width, height)
-    console.log('image', image)
+    const image = await processImage(filename as string, Number(width), Number(height) )
+    console.log('image', (image))
 
-  res.send(`images page and data: ${image}`);
+    res.send(`images page and data: ${JSON.stringify(image)}`);
 });
 
 export default imagesRoute;

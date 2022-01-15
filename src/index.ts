@@ -5,7 +5,9 @@ import imagesRoute from './api/images';
 
 const app = express();
 
+app.use(express.urlencoded({extended: true}))
 app.use(logger);
+
 app.use('/test-route', testRoute);
 app.use('/api', imagesRoute);
 
