@@ -11,7 +11,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 
-app.use('/', homeRoute);
+app.use('/', homeRoute)
+
 //@ts-ignore
 app.use('/api', cacheMiddleware, imagesRoute);
 
