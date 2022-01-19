@@ -1,18 +1,19 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import processImage from '../utilities/processImage';
+import path from 'path';
 
 const imagesRoute = express.Router();
 
-imagesRoute.route('/images').get(async (req: Request, res: Response) => {
-  const { filename, width, height } = req.query;
-  const image = await processImage(
-    filename as string,
-    Number(width),
-    Number(height)
-  );
-  console.log('image', image);
-
-  res.send(`images page and data: ${JSON.stringify(image)}`);
-});
+imagesRoute
+  .route('/image')
+  .get(async (req: Request, res: Response, next: NextFunction) => {
+    const { filename, width, height } = req.query;
+    try {
+      await processImage(filename as string, Number(width), Number(height));
+      res.sendFile(path.resolve(`images/thumbs/${filename}.webp`));
+    } catch (error) {
+      next(error);
+    }
+  });
 
 export default imagesRoute;

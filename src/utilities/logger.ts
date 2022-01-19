@@ -5,7 +5,11 @@ const logger = (
   res: express.Response,
   next: () => void
 ): void => {
-  console.log('originalUrl', req.originalUrl);
+  console.log(
+    'originalUrl "',
+    req.originalUrl,
+    '" logger should be disabled for testing'
+  );
   next();
 };
 

@@ -1,28 +1,28 @@
-import express from 'express';
+import sharp from 'sharp';
 
-interface obj {
-  filename: string;
+interface OutputInfo {
+  format: string;
   width: number;
   height: number;
+  channels: number;
+  premultiplied: boolean;
+  size: number;
 }
 
 export default (
   filename: string,
   width: number,
   height: number
-): Promise<obj> => {
-  //get image from images folder by filname asynchronously
-  //resize image with sharp
-  //create new folder for the given image "thumbs"
-  //create resized image file and add to "thumbs"
-
+): Promise<OutputInfo> => {
   return new Promise((res, rej) => {
-    setTimeout(() => {
-      res({
-        filename,
-        width,
-        height
+    sharp('images/' + filename + '.jpg')
+      .resize(width, height)
+      .toFile(`images/thumbs/${filename}.webp`, (err, info) => {
+        if (err) {
+          rej(err);
+        } else {
+          res(info);
+        }
       });
-    }, 3000);
   });
 };
