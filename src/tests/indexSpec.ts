@@ -25,3 +25,19 @@ describe('test endpoint "/api/image?filename=fjord&width=200&height=200', () => 
     expect(res.type).toBe('image/webp');
   });
 });
+describe('test bad url', () => { 
+  it('returns 404 status code', async () => {
+    const res = await request.get(
+      '/api/imag?filename=fjord&width=200&height=200'
+    );
+    expect(res.statusCode).toBe(404);
+   })
+})
+describe('test non exist request query params ', () => { 
+  it('returns 500 status code', async () => {
+    const res = await request.get(
+      '/api/image?filename=fjords&width=200&height=200'
+    );
+    expect(res.statusCode).toBe(500);
+   })
+})

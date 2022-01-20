@@ -11,7 +11,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 
-app.use('/', homeRoute)
+app.use('/', homeRoute);
 
 //@ts-ignore
 app.use('/api', cacheMiddleware, imagesRoute);
@@ -19,13 +19,13 @@ app.use('/api', cacheMiddleware, imagesRoute);
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send(err.stack);
-  next()
 };
 
-app.use(function (req, res, next) {
-  res.status(404).send("Sorry can't find that!")
-})
 app.use(errorHandler);
+
+app.use(function (req, res) {
+  res.status(404).send("Sorry can't find that!");
+});
 
 app.listen(port, () => console.log(`server is listening on ${port}`));
 
