@@ -9,7 +9,7 @@ const port = 3000;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
-app.use(logger);
+process.env.NODE_ENV !== 'test' && app.use(logger);
 
 app.use('/', homeRoute);
 
@@ -28,5 +28,7 @@ app.use(function (req, res) {
 });
 
 app.listen(port, () => console.log(`server is listening on ${port}`));
+
+console.log('node env set to:', process.env.NODE_ENV)
 
 export default app;

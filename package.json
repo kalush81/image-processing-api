@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "jasmine": "jasmine",
+    "jasmine": "NODE_ENV=test jasmine",
     "test": "npm run build && npm run jasmine",
     "start": "nodemon ./build/index.js",
     "lint": "eslint . --ext .ts",
