@@ -1,8 +1,8 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, Router } from 'express';
 
-const homeRoute = express.Router();
+const homeRoute:Router = express.Router();
 
-homeRoute.get('/', (req: Request, res: Response) => {
+homeRoute.get('/', (req: Request, res: Response):void => {
   res.send('processing images home page ');
 });
 

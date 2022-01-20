@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { NextFunction}from 'express';
 
 const logger =  (
   req: express.Request,
   res: express.Response,
-  next: () => void
+  next: NextFunction
 ): void => {
   console.log(
     'originalUrl ',
